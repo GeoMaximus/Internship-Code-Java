@@ -4,12 +4,13 @@ public class Main {
 
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        int x = scanner.nextInt();
 
         int Sum = 0;
-        
-
-        System.out.println(x);
+        while(true) {
+            int x = scanner.nextInt();
+            Sum += x;
+            System.out.println(Sum);
+        }
 
     }
 }
