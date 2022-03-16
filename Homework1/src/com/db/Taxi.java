@@ -20,7 +20,7 @@ public class Taxi extends Vehicle{
     }
 
     public void setNoPassengers(int noPassengers) {
-        if(noPassengers > 0 && noPassengers < 35) {
+        if(noPassengers >= 0 && noPassengers < 4) {
             this.noPassengers = noPassengers;
         }
     }

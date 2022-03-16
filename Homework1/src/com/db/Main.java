@@ -74,6 +74,15 @@ public class Main {
         System.out.println("Taxi3 charge is: " + t3.profit());
         t3.display();
 
+        Vehicle b4 = new Bus("maroon", true, 15, 4.3f);
+//        System.out.println(b4 instanceof Vehicle);
+//        System.out.println(b4 instanceof Bus);
+//        System.out.println(b4 instanceof Taxi);
+        System.out.println("Abstract methods for bus B4:");
+        System.out.println("Bus4 charge is: " + b4.charge());
+        System.out.println("Bus4 profit is: " + b4.profit());
+        b4.display();
+
 
         System.out.println("Testing compareTo method");
         //testing compareTo

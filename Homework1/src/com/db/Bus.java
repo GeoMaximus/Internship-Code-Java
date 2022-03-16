@@ -15,6 +15,26 @@ public class Bus extends Vehicle{
         this.ticketPrice = ticketPrice;
     }
 
+    public int getNoPassengers() {
+        return noPassengers;
+    }
+
+    public void setNoPassengers(int noPassengers) {
+        if(noPassengers >= 0 && noPassengers < 35) {
+            this.noPassengers = noPassengers;
+        }
+    }
+
+    public float getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(float ticketPrice) {
+        if(ticketPrice > 0) {
+            this.ticketPrice = ticketPrice;
+        }
+    }
+
     @Override
     public float charge() {
         return this.noPassengers * this.ticketPrice;
