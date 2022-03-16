@@ -61,6 +61,13 @@ public class Main {
 
             }
 
+        long itr = 0;
+        for (int u = 100; u <= 200; u--) {
+            itr++;
+        }
+
+        System.out.println(itr);
+
         }
 
 
