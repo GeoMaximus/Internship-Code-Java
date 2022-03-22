@@ -1,14 +1,16 @@
 package com.db.classes;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyList<T> {
 
-    private ArrayList<T> list = new ArrayList<>();
+    private List<T> list;
 
     public MyList(int dimension){
         //constructor
-
+        list = new ArrayList<>(dimension);
     }
 
     public void add(T element){

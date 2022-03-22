@@ -21,9 +21,7 @@ package com.db;
 
 import com.db.classes.MyList;
 import com.db.classes.Student;
-import jdk.swing.interop.SwingInterOpUtils;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Main {
