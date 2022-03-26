@@ -1,12 +1,3 @@
-/*Implement a PizzaFactory that can create the following pizzas: Marguerita, ProsciuttoFunghi, Capriciosa and QuatroStagioni.
-
-        •Make the PizzaFactory a singleton class
-        •Implement a decorator that can add topping to each type of pizza
-        •Add a Client class and implement an Observer inside PizzaFactory. Allow clients to be notified about new baked pizzas.
-        •Add a Command pattern to allow clients to give orders to the PizzaFactory.
-        •Test the class in a main method*/
-
-
 package com.db;
 
 import com.db.command.CancelOrder;
@@ -38,11 +29,6 @@ public class Main {
         Pizza pizza1 = store.order("ProsciuttoFunghi");
         store.order("Capriciosa");
         store.order("QuatroStagioni");
-
-
-        //BUILDER
-
-
 
         //DECORATOR
         pizza = new Mozzarella(pizza);
