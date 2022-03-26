@@ -1,4 +1,4 @@
-package com.db.singleton;
+package com.db.factory;
 
 
 public class Capriciosa extends Pizza{

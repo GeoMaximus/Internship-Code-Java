@@ -9,10 +9,15 @@
 
 package com.db;
 
+import com.db.command.CancelOrder;
+import com.db.command.ExecuteOrder;
+import com.db.command.Order;
+import com.db.decorator.Barbeque;
+import com.db.decorator.Mozzarella;
+import com.db.factory.*;
+import com.db.observer.Client;
+import com.db.observer.Observer;
 import com.db.singleton.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,24 +33,47 @@ public class Main {
         System.out.println(pizzaFactory == pizzaFactory1);
 
         //FACTORY
-        Pizza pizza = new Marguerita();
-        Pizza pizza1 = new QuatroStagioni();
-        Pizza pizza2 = new Capriciosa();
-        Pizza pizza3 = new ProsciuttoFunghi();
+        Pizzeria store = new Pizzeria(pizzaFactory);
+        Pizza pizza = store.order("Marguerita");
+        Pizza pizza1 = store.order("ProsciuttoFunghi");
+        store.order("Capriciosa");
+        store.order("QuatroStagioni");
+
 
         //BUILDER
 
 
 
         //DECORATOR
-        pizza2 = new Tomatoes(pizza2);
-        pizza3 = new Mozzarella(pizza3);
+        pizza = new Mozzarella(pizza);
+        pizza1 = new Barbeque(pizza1);
 
 
         //OBSERVER
+        Observer o = new Client();
+        Observer o1 = new Client();
+        Observer o2 = new Client();
 
+        pizzaFactory.addObserver(o);
+        pizzaFactory.addObserver(o1);
+        pizzaFactory.addObserver(o2);
+
+        pizzaFactory.newPizza(pizza);
+        pizzaFactory.newPizza(pizza1);
 
         //COMMAND
+        Order order = new Order();
+        order.addPizza(pizza);
+        order.addPizza(pizza1);
+        order.removePizza(pizza);
+
+        pizzaFactory.setCommand(new ExecuteOrder(order));
+        pizzaFactory.confirmCommaand();
+        pizzaFactory.setCommand(new CancelOrder(order));
+        pizzaFactory.confirmCommaand();
+
+
+
 
     }
 }

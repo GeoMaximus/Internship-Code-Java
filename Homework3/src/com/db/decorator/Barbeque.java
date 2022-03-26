@@ -1,6 +1,8 @@
-package com.db.singleton;
+package com.db.decorator;
 
-public class Barbeque extends Decorator{
+import com.db.factory.Pizza;
+
+public class Barbeque extends Decorator {
 
     Pizza pizza;
     public Barbeque(Pizza pizza){

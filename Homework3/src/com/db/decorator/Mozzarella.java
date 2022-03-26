@@ -1,4 +1,6 @@
-package com.db.singleton;
+package com.db.decorator;
+
+import com.db.factory.Pizza;
 
 public class Mozzarella extends Decorator{
 
