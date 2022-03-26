@@ -9,7 +9,7 @@
 
 package com.db;
 
-import com.db.singleton.PizzaFactory;
+import com.db.singleton.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +21,25 @@ public class Main {
         //SINGLETON
         PizzaFactory pizzaFactory = PizzaFactory.getPizzaFactory();
         PizzaFactory pizzaFactory1 = PizzaFactory.getPizzaFactory();
+        PizzaFactory pizzaFactory2 = PizzaFactory.getPizzaFactory();
 
+        System.out.println(pizzaFactory == pizzaFactory1);
+        System.out.println(pizzaFactory2 == pizzaFactory1);
         System.out.println(pizzaFactory == pizzaFactory1);
 
         //FACTORY
-
+        Pizza pizza = new Marguerita();
+        Pizza pizza1 = new QuatroStagioni();
+        Pizza pizza2 = new Capriciosa();
+        Pizza pizza3 = new ProsciuttoFunghi();
 
         //BUILDER
 
+
+
         //DECORATOR
+        pizza2 = new Tomatoes(pizza2);
+        pizza3 = new Mozzarella(pizza3);
 
 
         //OBSERVER
