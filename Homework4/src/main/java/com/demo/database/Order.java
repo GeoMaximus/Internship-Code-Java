@@ -2,7 +2,7 @@ package com.demo.database;
 
 import java.sql.Date;
 
-public class Order {
+public class Order{
     private int id;
     private Date order_date;
     private Date shipped_date;
@@ -35,5 +35,16 @@ public class Order {
 
     public String getComment() {
         return comment;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", order_date=" + order_date +
+                ", shipped_date=" + shipped_date +
+                ", status='" + status + '\'' +
+                ", comment='" + comment + '\'' +
+                '}';
     }
 }

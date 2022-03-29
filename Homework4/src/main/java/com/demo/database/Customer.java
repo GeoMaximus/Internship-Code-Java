@@ -1,5 +1,8 @@
 package com.demo.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
     private int id;
     private String username;
@@ -10,6 +13,12 @@ public class Customer {
     private String city;
     private String postalCode;
     private String country;
+    private List<Order> ordersList = new ArrayList<>();
+
+    public Customer(int id, List<Order> ordersList) {
+        this.id = id;
+        this.ordersList = ordersList;
+    }
 
     public Customer(int id, String username,
                     String last_name, String first_name, String phone,
