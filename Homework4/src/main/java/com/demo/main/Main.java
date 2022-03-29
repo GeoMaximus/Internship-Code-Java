@@ -1,10 +1,13 @@
-package com.demo.database;
+package com.demo.main;
+
+import com.demo.database.*;
 
 import java.sql.Date;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        //database connection details: username = root, password = parola
         DatabaseWrapper databaseWrapper = new DatabaseWrapper("root", "parola");
         Customer c1 = new Customer(1,"da", "da", "da", "da", "da", "da", "da", "da");
         Customer c2 = new Customer(2,"da1", "da", "da", "da", "da", "da", "da", "da");
