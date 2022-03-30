@@ -159,7 +159,34 @@ public class DatabaseWrapper {
     }
 
     //When placing an order update the stock for the products
-    public void updateStock(OrderDetails orderDetails, Product product){
+    //couldn't figure out how to check if a new order has been added yet, started smth but not really working
+    public void updateStock(Order order, Customer customer){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into orders values (?, ?, ?, ?, ?, ?)");
+            preparedStatement.setInt(1, order.getId());
+            preparedStatement.setDate(2, order.getOrder_date());
+            preparedStatement.setDate(3, order.getShipped_date());
+            preparedStatement.setString(4, order.getStatus());
+            preparedStatement.setString(5, order.getComment());
+            preparedStatement.setInt(6, customer.getId());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+        try {
+            //PreparedStatement preparedStatement = connection.prepareStatement("SELECT max(id) FROM orders");
+            //ResultSet rs = preparedStatement.executeQuery();
+            //if(something)
+            if(order != null) {
+                PreparedStatement preparedStatement1 = connection.prepareStatement("UPDATE products INNER JOIN orderdetails\n" +
+                        "on products.code = orderdetails.product_code INNER JOIN orders on orderdetails.id = orders.id\n" +
+                        "SET products.stock = products.stock - orderdetails.quantity WHERE orderdetails.id = ?");
+                preparedStatement1.setInt(1, order.getId());
+                preparedStatement1.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

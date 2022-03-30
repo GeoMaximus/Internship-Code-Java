@@ -32,7 +32,7 @@ public class Main {
 //        databaseWrapper.deleteCustomer(3);
 //        databaseWrapper.deleteCustomer(2);
 
-        Order order1 = new Order(6, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), "active", "no comments");
+        Order order1 = new Order(8, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), "active", "no comments");
 //        databaseWrapper.addOrder(order1, 2);
 
         List<Order> orders = databaseWrapper.viewOrdersForCustomer(2);
@@ -44,8 +44,6 @@ public class Main {
 
         //databaseWrapper.addOrderComments("another comment", 1);
 
-        Product product = new Product("Prod5", "Prod1", "Description", 120, 12.34);
-        OrderDetails orderDetails = new OrderDetails(6, "Product1", 10, 5.5);
-        databaseWrapper.updateStock(orderDetails, product);
+        databaseWrapper.updateStock(order1, c1);
     }
 }
