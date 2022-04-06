@@ -1,6 +1,6 @@
 package com.db.homework6.controllers;
 
-import com.db.homework6.datalayer.DatabaseManager;
+import com.db.homework6.datalayer.DataBaseManager;
 import com.db.homework6.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 public class CustomerController {
 
     @Autowired
-    public DatabaseManager db;
+    public DataBaseManager db;
 
     @GetMapping("/get/{id}")
     public ModelAndView getById(@PathVariable String id) {
@@ -46,6 +46,12 @@ public class CustomerController {
         db.insertCustomer(customer);
         modelAndView.addObject("customer", customer);
         return modelAndView;
+    }
+
+    @PutMapping("/update/{id}")
+    public void updateCustomerPhone(@PathVariable String id, @RequestBody String phone) {
+        db.updateCustomerPhone(id, phone);
+        System.out.println("Customer with id: " + id + " has updated phone number");
     }
 
     @GetMapping("/get/byCity/{city}")
