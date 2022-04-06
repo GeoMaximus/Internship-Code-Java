@@ -90,4 +90,11 @@ public class DataBaseManager {
         template.update(querey, orderDetails.getId(), orderDetails.getProduct_code(), orderDetails.getQuantity(), orderDetails.getPriceEach());
     }
 
+    public void placeOrder(Order order, OrderDetails orderDetails) {
+        String query = "INSERT INTO orders VALUES(?,?,?,?,?,?)";
+        template.update(query, order.getId(), order.getOrder_date(), order.getShipped_date(), order.getComments(), order.getCustomer_id());
+        String query1 = "INSERT INTO orderdetails VALUES(?,?,?,?)";
+        template.update(query1, orderDetails.getId(), orderDetails.getProduct_code(), orderDetails.getQuantity(), orderDetails.getPriceEach());
+    }
+
 }

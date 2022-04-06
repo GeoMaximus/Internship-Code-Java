@@ -12,7 +12,7 @@ public class OrderController {
     @Autowired
     DataBaseManager db;
 
-    @PostMapping("/place/{id}")
+    @PutMapping("/place/{id}")
     public void placeOrder(@PathVariable("id") Integer orderId, @RequestBody OrderDetails orderDetails) throws Exception {
         if(orderId == orderDetails.getId()) {
             db.placeOrder(orderId, orderDetails);
@@ -23,8 +23,8 @@ public class OrderController {
     }
 
     @PutMapping("/placeOrder")
-    public void placeOrder(Order order, OrderDetails orderDetails) {
-
+    public void placeOrder(@RequestBody Order order, @RequestBody OrderDetails orderDetails) {
+        db.placeOrder(order, orderDetails);
     }
 
 }
