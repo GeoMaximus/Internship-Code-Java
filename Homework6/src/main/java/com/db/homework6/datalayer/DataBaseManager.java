@@ -85,9 +85,15 @@ public class DataBaseManager {
         return template.query(query, new ProductOrderPairRowMapper());
     }
 
+    public boolean isIdAvailable(int id) {
+        String query = "SELECT COUNT(*) FROM orders WHERE id = ?";
+        int count = template.queryForObject(query, new Object[] {id}, Integer.class);
+        return count > 0;
+    }
+
     public void placeOrder(int orderId, OrderDetails orderDetails) {
-        String querey = "INSERT INTO orderdetails VALUES(?,?,?,?)";
-        template.update(querey, orderDetails.getId(), orderDetails.getProduct_code(), orderDetails.getQuantity(), orderDetails.getPriceEach());
+        String query = "INSERT INTO orderdetails VALUES(?,?,?,?)";
+        template.update(query, orderId, orderDetails.getProduct_code(), orderDetails.getQuantity(), orderDetails.getPriceEach());
     }
 
     public void placeOrder(Order order, OrderDetails orderDetails) {

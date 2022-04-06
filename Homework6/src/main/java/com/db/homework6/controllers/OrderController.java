@@ -1,6 +1,7 @@
 package com.db.homework6.controllers;
 
 import com.db.homework6.datalayer.DataBaseManager;
+import com.db.homework6.exceptions.OrderException;
 import com.db.homework6.model.Order;
 import com.db.homework6.model.OrderDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,12 @@ public class OrderController {
     DataBaseManager db;
 
     @PutMapping("/place/{id}")
-    public void placeOrder(@PathVariable("id") Integer orderId, @RequestBody OrderDetails orderDetails) throws Exception {
-        if(orderId == orderDetails.getId()) {
-            db.placeOrder(orderId, orderDetails);
-        }
-        else {
-            throw new Exception();
+    public void placeOrder(@PathVariable("id") Integer orderId, @RequestBody OrderDetails orderDetails) throws OrderException {
+            if (db.isIdAvailable(orderId)) {
+                db.placeOrder(orderId, orderDetails);
+            }
+            else {
+                throw new OrderException("Invalid order id");
         }
     }
 
