@@ -1,4 +1,4 @@
-package com.db.homework6.model;
+package com.db.homework6.models;
 
 public class Customer {
     int id;
@@ -11,7 +11,8 @@ public class Customer {
     String city;
     String country;
 
-    public Customer() {}
+    public Customer() {
+    }
 
     public int getId() {
         return id;

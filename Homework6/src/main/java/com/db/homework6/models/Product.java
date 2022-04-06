@@ -1,4 +1,4 @@
-package com.db.homework6.model;
+package com.db.homework6.models;
 
 public class Product {
     private String code;
@@ -7,7 +7,8 @@ public class Product {
     private int stock;
     private double price;
 
-    public Product() {}
+    public Product() {
+    }
 
     public String getCode() {
         return code;

@@ -1,6 +1,6 @@
 package com.db.homework6.datalayer;
 
-import com.db.homework6.model.*;
+import com.db.homework6.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -87,13 +87,19 @@ public class DataBaseManager {
 
     public boolean isIdAvailable(int id) {
         String query = "SELECT COUNT(*) FROM orders WHERE id = ?";
-        int count = template.queryForObject(query, new Object[] {id}, Integer.class);
+        int count = template.queryForObject(query, new Object[]{id}, Integer.class);
         return count > 0;
+    }
+
+    public void updateStock() {
+        String query = "UPDATE products, orderdetails SET stock = stock - quantity WHERE products.code = orderdetails.product_code";
+        template.update(query);
     }
 
     public void placeOrder(int orderId, OrderDetails orderDetails) {
         String query = "INSERT INTO orderdetails VALUES(?,?,?,?)";
         template.update(query, orderId, orderDetails.getProduct_code(), orderDetails.getQuantity(), orderDetails.getPriceEach());
+        updateStock();
     }
 
     public void placeOrder(Order order, OrderDetails orderDetails) {
@@ -101,6 +107,7 @@ public class DataBaseManager {
         template.update(query, order.getId(), order.getOrder_date(), order.getShipped_date(), order.getComments(), order.getCustomer_id());
         String query1 = "INSERT INTO orderdetails VALUES(?,?,?,?)";
         template.update(query1, orderDetails.getId(), orderDetails.getProduct_code(), orderDetails.getQuantity(), orderDetails.getPriceEach());
+        updateStock();
     }
 
 }

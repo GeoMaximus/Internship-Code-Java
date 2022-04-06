@@ -1,7 +1,7 @@
 package com.db.homework6.controllers;
 
 import com.db.homework6.datalayer.DataBaseManager;
-import com.db.homework6.model.Customer;
+import com.db.homework6.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -58,7 +58,7 @@ public class CustomerController {
     public ModelAndView getCustomersByCity(@PathVariable String city) {
         ModelAndView modelAndView = new ModelAndView("customers-list");
         List<Customer> list = db.getCustomersByCity(city);
-        modelAndView.addObject("customers",list);
+        modelAndView.addObject("customers", list);
         return modelAndView;
     }
 }

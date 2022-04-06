@@ -1,4 +1,4 @@
-package com.db.homework6.model;
+package com.db.homework6.models;
 
 public class ProductOrderPair {
     private String product;

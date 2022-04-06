@@ -1,4 +1,4 @@
-package com.db.homework6.model;
+package com.db.homework6.models;
 
 import java.sql.Date;
 

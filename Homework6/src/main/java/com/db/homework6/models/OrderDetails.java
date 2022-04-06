@@ -1,4 +1,4 @@
-package com.db.homework6.model;
+package com.db.homework6.models;
 
 public class OrderDetails {
     private int id;
@@ -6,7 +6,8 @@ public class OrderDetails {
     private int quantity;
     private double priceEach;
 
-    public OrderDetails() {}
+    public OrderDetails() {
+    }
 
     public OrderDetails(int id, String product_code, int quantity, double priceEach) {
         this.id = id;

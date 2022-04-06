@@ -1,4 +1,4 @@
-package com.db.homework6.model;
+package com.db.homework6.models;
 
 import java.sql.Date;
 
@@ -10,7 +10,8 @@ public class Order {
     private String comments;
     private int customer_id;
 
-    public Order() {}
+    public Order() {
+    }
 
     public Order(int id, Date order_date, Date shipped_date, String status, String comments, int customer_id) {
         this.id = id;

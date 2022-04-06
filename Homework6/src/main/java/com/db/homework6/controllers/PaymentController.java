@@ -1,7 +1,7 @@
 package com.db.homework6.controllers;
 
 import com.db.homework6.datalayer.DataBaseManager;
-import com.db.homework6.model.Payment;
+import com.db.homework6.models.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

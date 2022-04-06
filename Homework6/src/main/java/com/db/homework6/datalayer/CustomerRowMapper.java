@@ -1,6 +1,6 @@
 package com.db.homework6.datalayer;
 
-import com.db.homework6.model.Customer;
+import com.db.homework6.models.Customer;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
