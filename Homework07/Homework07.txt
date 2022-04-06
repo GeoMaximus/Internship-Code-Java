@@ -1,0 +1,13 @@
+Homework:
+
+Create an application which should expose next REST API endpoints:
+
+ -- create user (input: firstName, lastName, age, email, password)
+ -- get user by id
+ -- search user by first name
+ -- create account for a user (input: currency -> an iban should be generated for each account)
+ -- get user accounts (base on userId)
+
+Required:
+User mysql db
+Put your project in git repo and send the link to the repo into the homework submit section (if the repro is private invite me to be able to check the code)
