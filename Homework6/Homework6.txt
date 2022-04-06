@@ -4,8 +4,6 @@ Homework:
 to auto increment id (do not change anything)
 
 
---  list all (products, order) pairs (with join)
-
 
 -- Controller for placing order: this will not be your standard CRUD API, it will contain: placeOrder(orderId, orderDetails):  add new order details
 to order, will fail if orderId does not already exist, also updated product stock placeOrder(order, orderDetails)”: add new order and order details, will
@@ -15,6 +13,3 @@ in the business logic layer (separate package and annotate with @Service)
 
 -- Controller for payments
 	registerPayment(payment): add payment to database
-
-
-Respect coding conventions and style, send me a message on slack if anything is unclear!

@@ -2,6 +2,7 @@ package com.db.homework6.controllers;
 
 import com.db.homework6.datalayer.DataBaseManager;
 import com.db.homework6.model.Product;
+import com.db.homework6.model.ProductOrderPair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,5 +47,12 @@ public class ProductController {
     public void deleteProduct(@PathVariable String code){
         db.deleteProduct(code);
         System.out.println("Product with code: " + code + " has been deleted");
+    }
+
+    @GetMapping("/getProductsWithOrders")
+    public ResponseEntity<?> getProductsWithOrders() {
+        List<ProductOrderPair> productOrderPair = db.getProductsWithOrders();
+        ResponseEntity<?> response = new ResponseEntity<>(productOrderPair, HttpStatus.OK);
+        return response;
     }
 }

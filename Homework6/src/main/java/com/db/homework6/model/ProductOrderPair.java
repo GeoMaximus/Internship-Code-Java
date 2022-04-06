@@ -1,15 +1,15 @@
 package com.db.homework6.model;
 
 public class ProductOrderPair {
-    private String customer;
+    private String product;
     private String order;
 
     public String getCustomer() {
-        return customer;
+        return product;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public void setProduct(String product) {
+        this.product = product;
     }
 
     public String getOrder() {

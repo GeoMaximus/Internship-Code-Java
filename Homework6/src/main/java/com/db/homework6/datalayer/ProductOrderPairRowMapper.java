@@ -10,6 +10,8 @@ public class ProductOrderPairRowMapper implements RowMapper<ProductOrderPair> {
     @Override
     public ProductOrderPair mapRow(ResultSet rs, int rowNum) throws SQLException {
         ProductOrderPair productOrderPair = new ProductOrderPair();
-        return null;
+        productOrderPair.setOrder(rs.getString("orderdetails.id"));
+        productOrderPair.setProduct(rs.getString("products.name"));
+        return productOrderPair;
     }
 }

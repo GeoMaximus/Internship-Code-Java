@@ -1,9 +1,6 @@
 package com.db.homework6.datalayer;
 
-import com.db.homework6.model.Customer;
-import com.db.homework6.model.Payment;
-import com.db.homework6.model.ProductOrderPair;
-import com.db.homework6.model.Product;
+import com.db.homework6.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -81,6 +78,16 @@ public class DataBaseManager {
     public void register(Payment payment) {
         String query = "INSERT INTO payments VALUES(?, ?, ?)";
         template.update(query, payment.getCustomerId(), payment.getPaymentDate(), payment.getAmount());
+    }
+
+    public List<ProductOrderPair> getProductsWithOrders() {
+        String query = "SELECT products.name, orderdetails.id from orderdetails JOIN products ON orderdetails.product_code = products.code";
+        return template.query(query, new ProductOrderPairRowMapper());
+    }
+
+    public void placeOrder(int orderId, OrderDetails orderDetails) {
+        String querey = "INSERT INTO orderdetails VALUES(?,?,?,?)";
+        template.update(querey, orderDetails.getId(), orderDetails.getProduct_code(), orderDetails.getQuantity(), orderDetails.getPriceEach());
     }
 
 }
