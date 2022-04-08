@@ -9,11 +9,8 @@ import com.db.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.rmi.ServerError;
-import java.rmi.ServerException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,23 +32,25 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public User getUsersById(@PathVariable int id) {
-        User user = userRepository.findById(id).get();
-        return user;
+        //add an exception if the user does not exist
+        return userRepository.findById(id).get();
     }
 
     @GetMapping("/users/search")
     public List<User> searchUserByFirstName(@RequestParam String firstName) {
         //test to see if it works properly
+        //user should be able to search with partial name
         return userRepository.findByFirstName(firstName);
     }
 
     @PostMapping("/accounts/create")
     public ResponseEntity<Account> createAccount(@RequestBody Account newAccount) throws UserException {
-        //add smth if user doesnt exist
-        //add smth to add to an existing user
+        //add exception if user doesn't exist
+        //add exception if account already exists
+        //add exception if
         newAccount.setIBAN(accountService.generateIBAN(newAccount));
         accountRepository.save(newAccount);
-        if(newAccount == null) {
+        if (newAccount == null) {
             throw new UserException("The account you are trying to create is null");
         } else {
             return new ResponseEntity<>(newAccount, HttpStatus.CREATED);
@@ -60,6 +59,7 @@ public class UserController {
 
     @GetMapping("/user/accounts/{userId}")
     public List<Account> getAccountsByUserId(@PathVariable int userId) {
+        //treat exception if the userId does not exist
         return new ArrayList<>(accountRepository.findByUserId(userId));
     }
 }
