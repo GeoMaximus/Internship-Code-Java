@@ -10,4 +10,4 @@ Create an application which should expose next REST API endpoints:
 
 Required:
 User mysql db
-Put your project in git repo and send the link to the repo into the homework submit section (if the repro is private invite me to be able to check the code)
+Put your project in git repo and send the link to the repo into the homework submit section (if the repo is private invite me to be able to check the code)

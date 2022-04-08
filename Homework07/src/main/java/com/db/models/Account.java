@@ -17,5 +17,10 @@ public class Account {
     private int id;
     @Column(name = "user_id")
     private int userId;
-    private int IBAN;
+    private Currency currency;
+    private String IBAN;
+
+    public void setIBAN(String IBAN) {
+        this.IBAN = IBAN;
+    }
 }
