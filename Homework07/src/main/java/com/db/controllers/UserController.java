@@ -1,6 +1,7 @@
 package com.db.controllers;
 
-import com.db.exceptions.UserException;
+import com.db.exceptions.NullAccountException;
+import com.db.exceptions.NullUserException;
 import com.db.models.Account;
 import com.db.models.User;
 import com.db.repositories.AccountRepository;
@@ -31,9 +32,13 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User getUsersById(@PathVariable int id) {
+    public User getUsersById(@PathVariable int id) throws NullUserException {
         //add an exception if the user does not exist
-        return userRepository.findById(id).get();
+        if (!userRepository.existsById(id)) {
+            throw new NullUserException("The user does not exist");
+        } else {
+            return userRepository.findById(id).get();
+        }
     }
 
     @GetMapping("/users/search")
@@ -44,22 +49,31 @@ public class UserController {
     }
 
     @PostMapping("/accounts/create")
-    public ResponseEntity<Account> createAccount(@RequestBody Account newAccount) throws UserException {
+    public ResponseEntity<Account> createAccount(@RequestBody Account newAccount) throws NullUserException, NullAccountException {
         //add exception if user doesn't exist
         //add exception if account already exists
-        //add exception if
         newAccount.setIBAN(accountService.generateIBAN(newAccount));
         accountRepository.save(newAccount);
         if (newAccount == null) {
-            throw new UserException("The account you are trying to create is null");
+            throw new NullAccountException("The account you are trying to create is null");
+        }
+        if (accountRepository.existsById(newAccount.getId())) {
+            throw new NullAccountException("The account already exists");
+        }
+        if (!userRepository.existsById(newAccount.getUserId())) {
+            throw new NullUserException("The user does not exist");
         } else {
             return new ResponseEntity<>(newAccount, HttpStatus.CREATED);
         }
     }
 
     @GetMapping("/user/accounts/{userId}")
-    public List<Account> getAccountsByUserId(@PathVariable int userId) {
+    public List<Account> getAccountsByUserId(@PathVariable int userId) throws NullUserException {
         //treat exception if the userId does not exist
-        return new ArrayList<>(accountRepository.findByUserId(userId));
+        if (!userRepository.existsById(userId)) {
+            throw new NullUserException("The user does not exist");
+        } else {
+            return new ArrayList<>(accountRepository.findByUserId(userId));
+        }
     }
 }
