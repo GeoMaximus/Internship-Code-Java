@@ -29,8 +29,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUsersById(@PathVariable int id) throws InvalidUserException {
-            return userRepository.findById(id)
-                    .orElseThrow(() -> new InvalidUserException("The user does not exist!"));
+        return userRepository.findById(id)
+                .orElseThrow(() -> new InvalidUserException("The user does not exist!"));
     }
 
     @GetMapping("/search")

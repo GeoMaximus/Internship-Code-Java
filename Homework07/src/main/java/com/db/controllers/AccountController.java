@@ -1,7 +1,7 @@
 package com.db.controllers;
 
-import com.db.exceptions.InvalidUserException;
 import com.db.exceptions.ExistingAccountException;
+import com.db.exceptions.InvalidUserException;
 import com.db.models.Account;
 import com.db.repositories.AccountRepository;
 import com.db.repositories.UserRepository;
